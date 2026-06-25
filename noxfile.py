@@ -18,7 +18,7 @@ def lint(session):
 @nox.session(python=["3.11", "3.12", "3.13", "3.14"])
 def tests(session):
     session.install(
-        "torch==2.2.1",
+        "torch",
         "torchvision",
         "--index-url",
         "https://download.pytorch.org/whl/cpu",
