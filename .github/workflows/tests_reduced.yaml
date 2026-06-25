@@ -4,10 +4,10 @@ on:
     branches-ignore:
       - master
 
-concurrency: 
+concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
-  
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -16,24 +16,24 @@ jobs:
         python-version: ["3.11"]
     name: Python ${{ matrix.python-version }}
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Nox
-      run: pip install nox==2024.03.02
-    - name: Run tests
-      run: nox --non-interactive --error-on-missing-interpreter --session "tests-${{ matrix.python-version }}"
-  
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Nox
+        run: pip install nox==2024.03.02
+      - name: Run tests
+        run: nox --non-interactive --error-on-missing-interpreter --session "tests-${{ matrix.python-version }}"
+
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python 3.9
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: 3.11
       - name: Install Nox
         run: pip install nox==2024.03.02
       - name: Lint
